@@ -93,3 +93,6 @@ $character"""
 disabled = false
 format = '[\[ $time \]]($style) '
 time_format = '%F %T'
+
+[python]
+symbol = " "
