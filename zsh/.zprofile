@@ -1,5 +1,5 @@
-export DOTFILES=$HOME/.dotfiles
-export PATH="$PATH;$HOME/.local/scripts"
+export DOTFILES=$HOME/dotfiles
+export PATH="$PATH:$HOME/.local/scripts"
 
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
@@ -8,7 +8,7 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
-export PATH="${HOME}/.local/scripts:${PATH}"
+bindkey -s ^f "tmux-sessionizer\n"
 
 # Set PATH, MANPATH, etc., for Homebrew.
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
