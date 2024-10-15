@@ -89,6 +89,12 @@ $container\
 $shell\
 $character"""
 
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
 [time]
 disabled = false
 format = '[\[ $time \]]($style) '

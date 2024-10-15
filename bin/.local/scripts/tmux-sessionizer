@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 WORK="$HOME/Repositories/work"
+PERSONAL="$HOME/Repositories/personal"
+
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	selected=$(find $WORK -mindepth 1 -maxdepth 3 -type d | grep -v -E '\.git' | fzf --border=double)
+	selected=$(find $WORK $PERSONAL -mindepth 1 -maxdepth 3 -type d | grep -v -E '\.git' | fzf --border=double)
 fi
 
 if [[ -z $selected ]]; then
