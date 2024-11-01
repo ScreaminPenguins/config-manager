@@ -79,10 +79,10 @@ $crystal\
 $custom\
 $sudo\
 $cmd_duration\
+$time\
 $line_break\
 $jobs\
 $battery\
-$time\
 $status\
 $os\
 $container\
