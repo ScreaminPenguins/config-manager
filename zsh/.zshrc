@@ -10,6 +10,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(git dotenv pyenv virtualenv)
 source $ZSH/oh-my-zsh.sh
+source ~/.zprofile
 
 #######################################################################
 # Starship
