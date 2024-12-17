@@ -17,3 +17,8 @@ source ~/.zprofile
 eval "$(starship init zsh)"
 #
 #######################################################################
+
+. "$HOME/.local/bin/env"
+#######################################################################
+# eza
+export EZA_CONFIG_DIR="$HOME/.config/eza"
