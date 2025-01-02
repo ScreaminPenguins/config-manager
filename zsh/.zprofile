@@ -30,3 +30,9 @@ eval "$(pyenv init --path)"
 export PIPENV_VERBOSITY=-1
 
 #######################################################################
+# Eza
+alias e='eza'
+
+#######################################################################
+# K9s
+alias k9s='k9s --context $(command kubectl config get-contexts -o name | fzf)'
