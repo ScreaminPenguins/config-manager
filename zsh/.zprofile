@@ -6,6 +6,7 @@ export PATH="$PATH:$HOME/.local/scripts"
 alias docs="cd $HOME/Documents"
 alias repos="cd $HOME/Repositories"
 
+alias lg="lazygit"
 bindkey -s ^f "tmux-sessionizer\n"
 #######################################################################
 # Homebrew Items
