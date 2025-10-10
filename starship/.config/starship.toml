@@ -101,4 +101,5 @@ format = '[\[ $time \]]($style) '
 time_format = '%F %T'
 
 [python]
+disabled = true
 symbol = " "
