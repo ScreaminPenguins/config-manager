@@ -7,7 +7,11 @@ alias docs="cd $HOME/Documents"
 alias repos="cd $HOME/Repositories"
 
 alias lg="lazygit"
+
 bindkey -s ^f "tmux-sessionizer\n"
+
+bindkey -r "^S"
+bindkey "^S" history-incremental-pattern-search-backward
 #######################################################################
 # Homebrew Items
 eval $(/opt/homebrew/bin/brew shellenv)
@@ -43,3 +47,7 @@ export PIPENV_VERBOSITY=-1
 #######################################################################
 # K9s
 # alias k9s='k9s --context $(command kubectl config get-contexts -o name | fzf)'
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/Users/ash_gent/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<
