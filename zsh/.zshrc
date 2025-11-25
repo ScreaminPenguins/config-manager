@@ -13,6 +13,7 @@ eval "$(starship init zsh)"
 alias docs="cd $HOME/Documents"
 alias repos="cd $HOME/Repositories"
 alias lg="lazygit"
+alias ld="lazydocker"
 
 #######################################################################
 # Key Bindings
