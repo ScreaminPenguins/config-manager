@@ -12,3 +12,6 @@ export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"
 
 # TODO: what is this?
 export PATH="$PATH:/Users/ash_gent/Library/Application Support/Coursier/bin"
+
+# Java
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
