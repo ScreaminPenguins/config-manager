@@ -7,6 +7,8 @@ fi
 export ZSH_DISABLE_COMPFIX=true
 plugins=(git dotenv virtualenv kubectl helm)
 
+# Set directory for .zcompdump-* files
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
