@@ -1,0 +1,19 @@
+#! /bin/bash
+
+# Use HEAD to retrieve branch name
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+# Don't add ticket number if `--amend` is passed to commit
+IS_AMEND=$(ps -ocommand= -p $PPID | grep -e '--amend')
+if [ -n "${IS_AMEND}" ]; then
+	exit 0
+fi
+
+# Regex pattern
+REGEX_PATTERN="[a-zA-Z]+-[0-9]+"
+
+JIRA_ISSUE_ID=$(echo "$BRANCH_NAME" | grep -o -E "$REGEX_PATTERN")
+
+if [ -n "$JIRA_ISSUE_ID" ]; then
+	sed -i '.bak' "1s/^/$JIRA_ISSUE_ID: /" $1
+fi

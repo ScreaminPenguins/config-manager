@@ -1,0 +1,26 @@
+#! /bin/bash
+
+FORBIDDEN_FILES=(".env", ".env.example")
+
+for file in "${FORBIDDEN_FILES}"; do
+    if git diff --cached --name-only | grep -q "^${file}$"; then
+        echo "==================================================="
+        echo "ERROR: Attempting to commit change to ${file}"
+        echo "==================================================="
+        if [ "${file}" = ".env" ]; then
+            echo "   This file should not be committed to the repo!!"
+            echo "   Unstage file to make commit"
+        elif [ "${file}" = ".env.example" ]; then
+            echo "   Edits to .env.example must be explicitly added:"
+            echo "     git commit --no-verify"
+        fi
+        echo "    Not committing changes"
+        echo "==================================================="
+        exit 1
+    fi
+done
+
+echo "==================================================="
+echo "Pre-commit checks passed"
+echo "==================================================="
+exit 0
