@@ -17,26 +17,41 @@ else
 fi
 
 echo "====================================="
+echo "Updating Homebrew"
+brew update
+brew upgrade
+
+echo "====================================="
 echo "Installing Homebrew Formulae"
 BREW_FORMULAE=(
+    "bat"
+    "btop"
     "curl"
+    "fd"
     "fx"
     "fzf"
+    "glab"
+    "gnu-sed"
     "helm"
     "derailed/k9s/k9s"
+    "kafka"
     "kubectl"
     "lazydocker"
     "lazygit"
     "jq"
     "make"
+    "maven"
     "minikube"
+    "openjdk@17"
     "neovim"
     "starship"
     "stow"
+    "tlrc"
     "ripgrep"
     "tmux"
     "uv"
     "yq"
+    "zsh-completions"
 )
 for f in "${BREW_FORMULAE[@]}"; do
     brew install ${f}
@@ -67,7 +82,9 @@ echo "====================================="
 echo "Setting up symlinks"
 
 stow ../bin
+stow ../git-templates
 stow ../gitui
+stow ../k9s
 stow ../kitty
 stow ../nvim
 stow ../starship
