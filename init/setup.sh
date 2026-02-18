@@ -60,7 +60,10 @@ done
 echo "====================================="
 echo "Installing Homebrew Casks"
 BREW_CASKS=(
+    "claude-code"
+    "confluent-cli"
     "font-commit-mono-nerd-font"
+    "font-hack-nerd-font"
     "gcloud-cli"
 )
 for f in "${BREW_CASKS[@]}"; do
