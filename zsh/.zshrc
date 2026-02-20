@@ -1,8 +1,3 @@
-# Work stuff
-if [ -e "$HOME/.custom_brew" ]; then
-  source "$HOME/.custom_brew"
-fi
-
 # Fix this later. Issue with SweetUpdate trying to manage Docker
 export ZSH_DISABLE_COMPFIX=true
 plugins=(git dotenv virtualenv kubectl helm)
@@ -13,8 +8,12 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 
-source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
+if [ -e "$DOTFILES/zsh/.zshrc.sweetwater" ]; then
+    source "$DOTFILES/zsh/.zshrc.sweetwater"
+fi
+source $ZSH
 
+export K9S_CONFIG_DIR="${HOME}/.config/k9s"
 #######################################################################
 # Custom Aliases
 alias docs="cd $HOME/Documents"
