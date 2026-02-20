@@ -1,1 +1,4 @@
 .DS_Store
+.zshrc.sweetwater
+bin/.local/share
+bin/.local/state
