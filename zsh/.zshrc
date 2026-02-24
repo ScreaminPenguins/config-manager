@@ -13,6 +13,8 @@ if [ -e "$DOTFILES/zsh/.zshrc.sweetwater" ]; then
 fi
 source $ZSH
 
+source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 export K9S_CONFIG_DIR="${HOME}/.config/k9s"
 #######################################################################
 # Custom Aliases
@@ -23,4 +25,9 @@ alias ld="lazydocker"
 
 #######################################################################
 # Key Bindings
+## Custom Script
 bindkey -s ^f "tmux-sessionizer\n"
+
+## zsh-autosuggestions
+bindkey '^E' end-of-line
+

@@ -1,20 +1,12 @@
 #!/bin/bash
 
 echo "====================================="
-echo "Sourcing .zprofile.core"
-source ../zsh/.zprofile.d/core.zsh
+echo "Sourcing .zprofile"
+source ../zsh/.zprofile
 
 echo "====================================="
 echo "Installing Tools"
 echo "====================================="
-echo "Checking for brew installation"
-if command -v brew &>/dev/null; then
-    echo "Brew install found. Skipping"
-else
-    echo "Brew install not found. Installing"
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-    eval $(/opt/homebrew/bin/brew shellenv)
-fi
 
 echo "====================================="
 echo "Updating Homebrew"
@@ -26,6 +18,7 @@ echo "Installing Homebrew Formulae"
 BREW_FORMULAE=(
     "bat"
     "btop"
+    "cmake"
     "curl"
     "fd"
     "fx"
@@ -51,6 +44,7 @@ BREW_FORMULAE=(
     "tmux"
     "uv"
     "yq"
+    "zsh-autosuggestions"
     "zsh-completions"
 )
 for f in "${BREW_FORMULAE[@]}"; do

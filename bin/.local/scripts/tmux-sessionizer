@@ -16,7 +16,9 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 
+is_new=0
 if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+    is_new=1
     tmux new-session -d -s "$selected_name" -n "Nvim" -c "$selected"
     tmux new-window -t "$selected_name" -n "Shell" -c "$selected"
 
@@ -24,7 +26,11 @@ if ! tmux has-session -t="$selected_name" 2>/dev/null; then
 fi
 
 if [[ -n "${TMUX:-}" ]]; then
-    tmux switch-client -t "$selected_name"
+    if [[ $is_new -eq 1 ]]; then
+        tmux switch-client -t "$selected_name:Nvim"
+    else
+        tmux switch-client -t "$selected_name"
+    fi
 else
-    tmux attach-session -t "$selected_name"
+    tmux attach-session -t "$selected_name:Nvim"
 fi
