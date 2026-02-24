@@ -1,5 +1,6 @@
 .DS_Store
 .zshrc.sweetwater
+bin/.local/bin
 bin/.local/share
 bin/.local/state
 k9s/.config/k9s/clusters/*
