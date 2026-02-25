@@ -25,6 +25,7 @@ alias ld="lazydocker"
 
 #######################################################################
 # Key Bindings
+
 ## Custom Script
 bindkey -s ^f "tmux-sessionizer\n"
 

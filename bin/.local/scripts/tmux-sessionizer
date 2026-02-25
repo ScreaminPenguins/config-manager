@@ -2,12 +2,13 @@
 
 WORK="$HOME/Repositories/work"
 PERSONAL="$HOME/Repositories/personal"
+OBSIDIAN="${HOME}/Documents/McWork"
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find "$WORK" "$PERSONAL" "$DOTFILES" -mindepth 0 -maxdepth 5 \
-        -type d -exec test -d "{}/.git" \; -print -prune | fzf --border=double)
+    selected=$({ find "$WORK" "$PERSONAL" "$DOTFILES" -mindepth 1 -maxdepth 6 \
+        -name '.git' -type d -prune | sed 's|/.git$||'; echo "$OBSIDIAN"; } | fzf --border=double)
 fi
 
 if [[ -z $selected ]]; then
