@@ -31,4 +31,4 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 ## zsh-autosuggestions
 bindkey '^E' end-of-line
-
+bindkey '^ ' forward-word
