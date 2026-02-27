@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  echo "Usage: gcloud-switch <configuration>" >&2
+  exit 1
+fi
+
+gcloud config configurations activate "$1"
