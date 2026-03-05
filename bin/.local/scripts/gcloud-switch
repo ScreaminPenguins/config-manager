@@ -6,4 +6,9 @@ if [[ $# -ne 1 ]]; then
   exit 1
 fi
 
-gcloud config configurations activate "$1"
+gcloud config configurations activate "$1" 2>/dev/null
+echo "  -> Switched to configuration: $1"
+echo "  -> Setting application-default project id"
+project_id=$(gcloud config list --format='text(core.project)' 2>/dev/null)
+echo "  -> Application Default Project ID: $project_id"
+gcloud auth application-default set-quota-project "$project_id" 2>/dev/null

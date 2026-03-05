@@ -16,6 +16,7 @@ source $ZSH
 source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export K9S_CONFIG_DIR="${HOME}/.config/k9s"
+export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
 #######################################################################
 # Custom Aliases
 alias docs="cd $HOME/Documents"
