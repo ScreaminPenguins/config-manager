@@ -20,10 +20,18 @@ selected_name=$(basename "$selected" | tr . _)
 is_new=0
 if ! tmux has-session -t="$selected_name" 2>/dev/null; then
     is_new=1
-    tmux new-session -d -s "$selected_name" -n "Nvim" -c "$selected"
+    # Launch nvim as the window command directly so tmux execs it immediately,
+    # instead of spawning an interactive zsh and typing `nvim` at its prompt
+    # (which waited ~1-2.6s for shell startup before nvim even began).
+    # Trade-off: quitting nvim closes this window; the Shell window keeps the
+    # session alive. Old behaviour (drop to zsh prompt on quit) kept below.
+    tmux new-session -d -s "$selected_name" -n "Nvim" -c "$selected" nvim
     tmux new-window -t "$selected_name" -n "Shell" -c "$selected"
 
-    tmux send-keys -t "$selected_name:0" nvim ENTER
+    # --- Previous approach (revert to this to restore drop-to-shell-on-quit) ---
+    # tmux new-session -d -s "$selected_name" -n "Nvim" -c "$selected"
+    # tmux new-window -t "$selected_name" -n "Shell" -c "$selected"
+    # tmux send-keys -t "$selected_name:0" nvim ENTER
 fi
 
 if [[ -n "${TMUX:-}" ]]; then

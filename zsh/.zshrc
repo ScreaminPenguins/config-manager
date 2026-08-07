@@ -6,7 +6,17 @@ plugins=(git dotenv virtualenv kubectl helm)
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
 
-eval "$(starship init zsh)"
+# Cache `starship init`; regenerate only when the starship binary changes.
+# Saves the init subprocess (~0.15s) per shell. The prompt still renders live
+# (PROMPT/RPROMPT are single-quoted); the session key uses literal $RANDOM so it
+# stays per-shell-unique when sourced. Only the one-time init spawn is removed.
+_starship_init="$HOME/.cache/starship-init.zsh"
+if [[ ! -s $_starship_init || $(command -v starship) -nt $_starship_init ]]; then
+    mkdir -p "${_starship_init:h}"
+    starship init zsh > $_starship_init 2>/dev/null
+fi
+source $_starship_init
+unset _starship_init
 
 if [ -e "$DOTFILES/zsh/.zshrc.sweetwater" ]; then
     source "$DOTFILES/zsh/.zshrc.sweetwater"
@@ -33,3 +43,18 @@ bindkey -s ^f "tmux-sessionizer\n"
 ## zsh-autosuggestions
 bindkey '^E' end-of-line
 bindkey '^ ' forward-word
+
+# sweetctl completion is cached in .zshrc.sweetwater (Sweetwater-specific)
+
+export NVM_DIR="$HOME/.nvm"
+# node/npm/npx are already on PATH below, so nvm itself is lazy-loaded:
+# sourcing nvm.sh eagerly runs nvm_auto (~4.5s per shell). Defer it until
+# `nvm` is actually invoked.
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # nvm bash_completion
+  nvm "$@"
+}
+export PATH="$HOME/.nvm/versions/node/v24.18.0/bin:$PATH"
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"

@@ -2,8 +2,18 @@
 # PATH & Environment Variables
 export DOTFILES=$HOME/dotfiles
 export PATH="$PATH:$HOME/.local/scripts"
-
-eval $(/usr/local/bin/brew shellenv)
+export PATH="/usr/local/bin:$PATH"
+export PATH=/usr/local/share/google-cloud-sdk/bin:"$PATH"
+# Cache `brew shellenv`; regenerate only when the brew binary changes.
+# Avoids spawning brew (~0.25s) on every login shell. The cached output still
+# contains a live `path_helper` call, so PATH is reconstructed fresh each time.
+_brew_env="$HOME/.cache/brew-shellenv.zsh"
+if [[ ! -s $_brew_env || /usr/local/bin/brew -nt $_brew_env ]]; then
+    mkdir -p "${_brew_env:h}"
+    /usr/local/bin/brew shellenv > $_brew_env 2>/dev/null
+fi
+source $_brew_env
+unset _brew_env
 
 export ZSH="$HOME/.oh-my-zsh"
 
